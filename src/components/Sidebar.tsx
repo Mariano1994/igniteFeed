@@ -1,4 +1,4 @@
-import { PencilLine } from "phosphor-react"; // Icon labery
+import { PencilLine } from "phosphor-react"; // Icon library
 import styles from "./Sidebar.module.css";
 
 export function Sidebar() {
