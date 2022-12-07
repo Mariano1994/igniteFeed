@@ -1,6 +1,6 @@
 import { format, formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
@@ -21,7 +21,7 @@ interface postProps {
 
 export function Post({ author, publisedAt, content }: postProps) {
   const [comments, setComments] = useState([
-    "Maravilha. Continue postando e ganhand pontos",
+    "Maravilha. Continue postando e ganhando pontos",
   ]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -35,18 +35,22 @@ export function Post({ author, publisedAt, content }: postProps) {
     addSuffix: true,
   });
 
-  const handleCreateNewComment = function (event: any) {
+  const handleCreateNewComment = function (event: FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   };
 
-  const handleNewCommentInvalid = function (event: any) {
+  const handleNewCommentInvalid = function (
+    event: InvalidEvent<HTMLTextAreaElement>
+  ) {
     event.target.setCustomValidity("Este campo e obrigatorio!");
   };
 
-  const handleNewCommentChange = function (event: any) {
+  const handleNewCommentChange = function (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ) {
     event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   };
@@ -58,6 +62,7 @@ export function Post({ author, publisedAt, content }: postProps) {
 
     setComments(commentsWithoutDeletedOne);
   };
+
   return (
     <article className={styles.post}>
       <header>
@@ -114,7 +119,9 @@ export function Post({ author, publisedAt, content }: postProps) {
           return (
             <Comment
               key={comment}
+              author={author}
               content={comment}
+              publishedAt={publisedAt}
               onDeleteComment={deleteComment}
             />
           );

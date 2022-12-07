@@ -6,6 +6,7 @@ import { Post } from "./components/Post";
 // Styles Importation
 import "./global.css";
 import styles from "./App.module.css";
+import { DeleteComment } from "./components/DeleteComment";
 
 const posts = [
   {
@@ -17,13 +18,14 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", contentComment: "Fala galeraa 👋 " },
+      { type: "paragraph", contentComment: "Hi everyone 👋 " },
       {
         type: "paragraph",
         contentComment:
-          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+          "Leadership is behavioral, not positional. The capacity to integrate, motivate, and mobilize others to bring a common aspiration to life is what leadership is all about, not holding positions of formal authority",
       },
-      { type: "link", contentComment: "👉jane.design/doctorcare " },
+      { type: "paragraph", contentComment: "- Nelson Mandela" },
+      { type: "link", contentComment: "👉@marianocapiliku" },
     ],
     publisedAt: new Date("2022-12-2 20:00:00"),
   },
@@ -37,12 +39,14 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", contentComment: "Falaaa Devv 👋 " },
+      { type: "paragraph", contentComment: "Olá famila Dev 👋 " },
+      { type: "paragraph", contentComment: "Avisoo 😱 " },
       {
         type: "paragraph",
-        contentComment: "Ola familia Dev",
+        contentComment:
+          "O evento que consegue deitar abaixo plataformas mesmo quando avisadas pra escalar seus serviços está de volta, bora pra mais uma semana rumo ao next level",
       },
-      { type: "link", contentComment: "👉jane.design/doctorcare " },
+      { type: "link", contentComment: "@Misael_Lopes " },
     ],
     publisedAt: new Date("2022-12-06 20:00:00"),
   },
@@ -56,12 +60,17 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", contentComment: "Falaaa Devv 👋 " },
+      { type: "paragraph", contentComment: "Fala Dev 👋 " },
       {
         type: "paragraph",
-        contentComment: "Ola familia Dev",
+        contentComment:
+          "Linkedin, Netflix, Uber, IBM…sabe o que essas empresas têm em comum?Elas usam Node.js em suas aplicações.",
       },
-      { type: "link", contentComment: "👉jane.design/doctorcare " },
+      {
+        type: "paragraph",
+        contentComment:
+          "Uma tecnologia com poder de performance, produtividade e escala gigantesca, muito valorizada no mercado da programação e que pode fazer você decolar na programação em 2023.",
+      },
     ],
     publisedAt: new Date("2022-12-06 20:00:00"),
   },

@@ -3,17 +3,35 @@ import { useState } from "react";
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import { DeleteComment } from "./DeleteComment";
+
 interface propsComment {
   content: string;
+  publishedAt: Date;
+  author: {
+    name: string;
+    avatarUrl: string;
+  };
   onDeleteComment: Function;
 }
 
-export function Comment({ content, onDeleteComment }: propsComment) {
+export function Comment({
+  content,
+  onDeleteComment,
+  publishedAt,
+}: propsComment) {
   const [likecount, setLikeCount] = useState(0);
 
   const handlelikeCount = function () {
     setLikeCount(likecount + 1);
   };
+
+  const publishedCommentDateRelativeNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
 
   const handleDeleteComment = function () {
     onDeleteComment(content);
@@ -30,13 +48,13 @@ export function Comment({ content, onDeleteComment }: propsComment) {
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
-              <strong> Mariano Capiliku</strong>
+              <strong>Mariano Capiliku</strong>
               <time
                 title="03 de Dezembro as 08h: 13'"
                 dateTime="2022-03-12 08:13:30"
               >
                 {" "}
-                Cerca de 1h
+                <span>{publishedCommentDateRelativeNow}</span>
               </time>
             </div>
 
