@@ -21,7 +21,9 @@ interface postProps {
 }
 
 export function Post({ author, publisedAt, content }: postProps) {
-  const [comments, setComments] = useState(["Que Post Pertinente"]);
+  const [comments, setComments] = useState([
+    "Maravilha. Continue postando e ganhand pontos",
+  ]);
 
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -41,7 +43,12 @@ export function Post({ author, publisedAt, content }: postProps) {
     setNewCommentText("");
   };
 
+  const handleNewCommentInvalid = function (event: any) {
+    event.target.setCustomValidity("Este campo e obrigatorio!");
+  };
+
   const handleNewCommentChange = function (event: any) {
+    event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   };
 
@@ -91,25 +98,27 @@ export function Post({ author, publisedAt, content }: postProps) {
           onChange={handleNewCommentChange}
           name="comment"
           value={newCommentText}
+          onInvalid={handleNewCommentInvalid}
           placeholder="Deixe um comentario"
+          required
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={newCommentText.length === 0}>
+            Publicar
+          </button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          if (comment !== "") {
-            return (
-              <Comment
-                key={comment}
-                content={comment}
-                onDeleteComment={deleteComment}
-              />
-            );
-          }
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>

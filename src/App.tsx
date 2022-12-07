@@ -13,7 +13,7 @@ const posts = [
     author: {
       avatarUrl: "https://avatars.githubusercontent.com/u/83432409?v=4",
       name: "Mariano Capiliku",
-      role: "Front-End Developer @PCS NET",
+      role: "Front-End Developer @Pc's Net",
     },
 
     content: [
@@ -25,7 +25,7 @@ const posts = [
       },
       { type: "link", content: "👉jane.design/doctorcare " },
     ],
-    publisedAt: new Date("2022-12-20 20:00:00"),
+    publisedAt: new Date("2022-12-2 20:00:00"),
   },
 
   {
@@ -33,7 +33,26 @@ const posts = [
     author: {
       avatarUrl: "https://avatars.githubusercontent.com/u/66078558?v=4",
       name: "Misael Lopes",
-      role: "Back-End Developer @PCS NET",
+      role: "Back-End Developer @Pc's Net",
+    },
+
+    content: [
+      { type: "paragraph", content: "Falaaa Devv 👋 " },
+      {
+        type: "paragraph",
+        content: "Ola familia Dev",
+      },
+      { type: "link", content: "👉jane.design/doctorcare " },
+    ],
+    publisedAt: new Date("2022-12-06 20:00:00"),
+  },
+
+  {
+    id: 3,
+    author: {
+      avatarUrl: "https://avatars.githubusercontent.com/u/2254731?v=4",
+      name: "Diego Fernandes",
+      role: "CTO @Rocketseat",
     },
 
     content: [
