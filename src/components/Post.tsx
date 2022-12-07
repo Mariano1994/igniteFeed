@@ -11,12 +11,11 @@ interface postProps {
     name: string;
     role: string;
   };
-  content: [
-    {
-      type: string;
-      content: string;
-    }
-  ];
+  content: {
+    type: string;
+    contentComment: string;
+  }[];
+
   publisedAt: Date;
 }
 
@@ -80,11 +79,11 @@ export function Post({ author, publisedAt, content }: postProps) {
       <div className={styles.content}>
         {content.map((line) => {
           if (line.type === "paragraph") {
-            return <p key={line.content}> {line.content} </p>;
+            return <p key={line.contentComment}> {line.contentComment} </p>;
           } else if (line.type === "link") {
             return (
-              <p key={line.content}>
-                <a href="#"> {line.content} </a>
+              <p key={line.contentComment}>
+                <a href="#"> {line.contentComment} </a>
               </p>
             );
           }

@@ -17,13 +17,13 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", content: "Fala galeraa 👋 " },
+      { type: "paragraph", contentComment: "Fala galeraa 👋 " },
       {
         type: "paragraph",
-        content:
+        contentComment:
           "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
       },
-      { type: "link", content: "👉jane.design/doctorcare " },
+      { type: "link", contentComment: "👉jane.design/doctorcare " },
     ],
     publisedAt: new Date("2022-12-2 20:00:00"),
   },
@@ -37,12 +37,12 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", content: "Falaaa Devv 👋 " },
+      { type: "paragraph", contentComment: "Falaaa Devv 👋 " },
       {
         type: "paragraph",
-        content: "Ola familia Dev",
+        contentComment: "Ola familia Dev",
       },
-      { type: "link", content: "👉jane.design/doctorcare " },
+      { type: "link", contentComment: "👉jane.design/doctorcare " },
     ],
     publisedAt: new Date("2022-12-06 20:00:00"),
   },
@@ -56,12 +56,12 @@ const posts = [
     },
 
     content: [
-      { type: "paragraph", content: "Falaaa Devv 👋 " },
+      { type: "paragraph", contentComment: "Falaaa Devv 👋 " },
       {
         type: "paragraph",
-        content: "Ola familia Dev",
+        contentComment: "Ola familia Dev",
       },
-      { type: "link", content: "👉jane.design/doctorcare " },
+      { type: "link", contentComment: "👉jane.design/doctorcare " },
     ],
     publisedAt: new Date("2022-12-06 20:00:00"),
   },
