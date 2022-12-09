@@ -6,7 +6,6 @@ import { Post } from "./components/Post";
 // Styles Importation
 import "./global.css";
 import styles from "./App.module.css";
-import { DeleteComment } from "./components/DeleteComment";
 
 const posts = [
   {

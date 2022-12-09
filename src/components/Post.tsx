@@ -21,7 +21,7 @@ interface postProps {
 
 export function Post({ author, publisedAt, content }: postProps) {
   const [comments, setComments] = useState([
-    "Maravilha. Continue postando e ganhando pontos",
+    "Top. Post muito bom. Parabens!! 👏👏👏",
   ]);
 
   const [newCommentText, setNewCommentText] = useState("");
