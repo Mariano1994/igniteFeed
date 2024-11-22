@@ -6,6 +6,9 @@ export default {
       backgroundColor: {
         app: "#121214",
       },
+      fontFamily: {
+        app: "Roboto",
+      },
     },
   },
   plugins: [],
