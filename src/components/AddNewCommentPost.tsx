@@ -1,4 +1,4 @@
-const PostComment = () => {
+const AddNewCommentPost = () => {
   return (
     <div className="group border-t border-t-1 border-gray-300/5 pt-5 ">
       <span className="text-sm font-bold">Leave a feedback</span>
@@ -15,4 +15,4 @@ const PostComment = () => {
   );
 };
 
-export default PostComment;
+export default AddNewCommentPost;
