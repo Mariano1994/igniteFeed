@@ -4,7 +4,7 @@ import { PencilSimpleLine } from "@phosphor-icons/react";
 
 const Sidebar = () => {
   return (
-    <aside className=" w-[256px] rounded-lg overflow-hidden bg-black-200">
+    <aside className=" w-[256px] rounded-lg overflow-hidden bg-black-200 ">
       <img src={coverPhoto} className="w-[100%] h-[120px] object-cover" />
 
       <div className="flex flex-col items-center ">
