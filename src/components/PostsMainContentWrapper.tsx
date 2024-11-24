@@ -1,10 +1,13 @@
+import { usePosts } from "../context/PostsContext";
 import Post from "./Post";
 
 const PostsMainContentWrapper = () => {
+  const { posts } = usePosts();
   return (
     <main className="flex-1 space-y-8">
-      <Post />
-      <Post />
+      {posts.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </main>
   );
 };

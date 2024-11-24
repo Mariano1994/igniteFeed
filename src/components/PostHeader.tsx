@@ -1,14 +1,28 @@
-import profileImage from "../assets/avatar-1.jpg";
+import { DateFormatterFns } from "../utils/helpers";
 import Avatar from "./Avatar";
 
-const PostHeader = () => {
+interface AuthorProps {
+  author: {
+    name: string;
+    avatar_url: string;
+    role: string;
+  };
+  publisedAt: Date;
+}
+
+const PostHeader = ({ author, publisedAt }: AuthorProps) => {
   return (
     <header className="flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <Avatar userImage={profileImage} width={60} height={60} isWithBorder />
+        <Avatar
+          userImage={author?.avatar_url}
+          width={60}
+          height={60}
+          isWithBorder
+        />
         <div className="flex flex-col ">
-          <strong className="font-bold  text-sm">Mariano Capiliku</strong>
-          <span className="text-xs text-gray-500">Web Developer</span>
+          <strong className="font-bold  text-sm">{author?.name}</strong>
+          <span className="text-xs text-gray-500">{author?.role}</span>
         </div>
       </div>
       <time
@@ -16,7 +30,7 @@ const PostHeader = () => {
         title="2024-12-23"
         className="text-sm text-gray-500"
       >
-        published 1h ago
+        {DateFormatterFns(publisedAt, new Date())}
       </time>
     </header>
   );
