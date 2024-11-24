@@ -1,9 +1,10 @@
 import { Dot, ThumbsUp, Trash } from "@phosphor-icons/react";
 import userImage from "../assets/avatar-1.jpg";
+import Avatar from "./Avatar";
 const Comment = () => {
   return (
     <div className="flex items-start gap-4 w-full">
-      <img src={userImage} height={50} width={50} className="rounded-md" />
+      <Avatar userImage={userImage} width={50} height={50} />
       <div className="flex flex-col gap-2 flex-1 ">
         <div className="flex flex-col  bg-gray-400/5 rounded-md ">
           <div className="flex items-start justify-between p-4">

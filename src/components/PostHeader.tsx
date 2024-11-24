@@ -1,17 +1,11 @@
 import profileImage from "../assets/avatar-1.jpg";
+import Avatar from "./Avatar";
 
 const PostHeader = () => {
   return (
     <header className="flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <div className="border-2  border-green-850 rounded-lg overflow-hidden">
-          <img
-            src={profileImage}
-            width={60}
-            height={60}
-            className="border-2 border-black overflow-hidden"
-          />
-        </div>
+        <Avatar userImage={profileImage} width={60} height={60} isWithBorder />
         <div className="flex flex-col ">
           <strong className="font-bold  text-sm">Mariano Capiliku</strong>
           <span className="text-xs text-gray-500">Web Developer</span>

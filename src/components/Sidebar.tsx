@@ -1,6 +1,7 @@
 import coverPhoto from "../assets/cover-profile-photo.avif";
 import profilePhoto from "../assets/avatar-1.jpg";
 import { PencilSimpleLine } from "@phosphor-icons/react";
+import Avatar from "./Avatar";
 
 const Sidebar = () => {
   return (
@@ -10,11 +11,11 @@ const Sidebar = () => {
       <div className="flex flex-col items-center ">
         <div className=" flex flex-col items-center gap-3 mb-5 ">
           <div className=" -mt-8">
-            <img
-              src={profilePhoto}
+            <Avatar
+              userImage={profilePhoto}
               width={70}
               height={70}
-              className="rounded-md border-2 border-green-850"
+              isWithBorder
             />
           </div>
           <div className="flex flex-col ga-1 items-center">
