@@ -5,7 +5,6 @@ const PostsMainContentWrapper = () => {
     <main className="flex-1 space-y-8">
       <Post />
       <Post />
-      <Post />
     </main>
   );
 };

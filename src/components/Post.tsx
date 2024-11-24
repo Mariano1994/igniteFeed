@@ -1,4 +1,5 @@
 import AddNewCommentPost from "./AddNewCommentPost";
+import Comment from "./Comment";
 import PostContent from "./PostContent";
 import PostHeader from "./PostHeader";
 
@@ -8,6 +9,8 @@ const Post = () => {
       <PostHeader />
       <PostContent />
       <AddNewCommentPost />
+      <Comment />
+      <Comment />
     </article>
   );
 };
