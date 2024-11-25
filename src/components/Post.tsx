@@ -34,7 +34,7 @@ const Post = ({ post }: PostPros) => {
       <PostContent content={post.content} />
       <AddNewCommentPost postID={post.id} />
       {post.comments?.map((comment) => {
-        return <Comment key={comment.id} comment={comment} />;
+        return <Comment key={comment.id} comment={comment} postId={post.id} />;
       })}
     </article>
   );

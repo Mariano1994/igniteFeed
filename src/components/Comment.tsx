@@ -2,6 +2,7 @@ import { Dot, ThumbsUp, Trash } from "@phosphor-icons/react";
 
 import Avatar from "./Avatar";
 import { DateFormatterFns } from "../utils/helpers";
+import { usePosts } from "../context/PostsContext";
 
 interface CommentProps {
   comment: {
@@ -14,9 +15,12 @@ interface CommentProps {
     publishedAt: Date;
     isOwner: boolean;
   };
+  postId: string;
 }
 
-const Comment = ({ comment }: CommentProps) => {
+const Comment = ({ comment, postId }: CommentProps) => {
+  const { handleDeleteComment } = usePosts();
+
   return (
     <div className="flex items-start gap-4 w-full">
       <Avatar userImage={comment.author.avatar_url} width={50} height={50} />
@@ -42,6 +46,7 @@ const Comment = ({ comment }: CommentProps) => {
             <div
               className="hover:cursor-pointer hover:text-red-400"
               title="Delete comment"
+              onClick={() => handleDeleteComment(postId, comment.id)}
             >
               <Trash size={20} />
             </div>

@@ -2,28 +2,33 @@ import { createContext, useContext, useState } from "react";
 import userimage from "../assets/avatar-1.jpg";
 import { Posts } from "../utils/PostsData";
 
+interface Comment {
+  id: string;
+  comment: string;
+  author: {
+    avatar_url: string;
+    name: string;
+  };
+  publishedAt: Date;
+  isOwner?: boolean;
+}
+
+interface Post {
+  id: string;
+  author: {
+    avatar_url: string;
+    name: string;
+    role: string;
+  };
+  publisedAt: Date;
+  content: string;
+  comments?: Comment[];
+}
+
 interface PostContextProps {
-  posts: {
-    id: string;
-    author: {
-      avatar_url: string;
-      name: string;
-      role: string;
-    };
-    publisedAt: Date;
-    content: string;
-    comments?: {
-      id: string;
-      comment: string;
-      author: {
-        avatar_url: string;
-        name: string;
-      };
-      publishedAt: Date;
-      isOnwer?: boolean;
-    }[];
-  }[];
-  handleAddNewComment: any;
+  posts: Post[];
+  handleAddNewComment: (id: string, comment: string) => void;
+  handleDeleteComment: (postId: string, commentId: string) => void;
 }
 
 interface ChildrenProps {
@@ -31,55 +36,36 @@ interface ChildrenProps {
 }
 
 export const PostContext = createContext<PostContextProps>({
-  posts: [
-    {
-      id: "",
-      author: {
-        name: "",
-        role: "",
-        avatar_url: "",
-      },
-      publisedAt: new Date(),
-      content: "",
-      comments: [
-        {
-          id: "",
-          author: {
-            name: "",
-            avatar_url: "",
-          },
-          isOnwer: false,
-          comment: "",
-          publishedAt: new Date(),
-        },
-      ],
-    },
-  ],
+  posts: [],
   handleAddNewComment: () => {},
+  handleDeleteComment: () => {},
 });
 
 export function PostContextProvidar({ children }: ChildrenProps) {
-  const [posts, setPost] = useState(Posts);
+  const [posts, setPost] = useState<Post[]>(Posts);
+
+  // FUNCTION TO ADD NEW COMMENT
 
   const handleAddNewComment = (id: string, comment: string) => {
     const newComment = posts.map((post) =>
       post.id === id
         ? {
             ...post,
-            comments: [
-              {
-                id: crypto.randomUUID(),
-                author: {
-                  name: "Mariano Capiliku",
-                  avatar_url: userimage,
-                },
-                publishedAt: new Date(),
-                comment: comment,
-                isOwner: true,
-              },
-
-              ...post.comments,
-            ],
+            comments: post.comments
+              ? [
+                  {
+                    id: crypto.randomUUID(),
+                    author: {
+                      name: "Mariano Capiliku",
+                      avatar_url: userimage as string,
+                    },
+                    publishedAt: new Date(),
+                    comment,
+                    isOwner: true,
+                  },
+                  ...post.comments,
+                ]
+              : [],
           }
         : post
     );
@@ -87,8 +73,26 @@ export function PostContextProvidar({ children }: ChildrenProps) {
     setPost(newComment);
   };
 
+  // FUNCTION TO DELETE A POST
+  const handleDeleteComment = (postId: string, commentId: string) => {
+    const updatedPosts = posts.map((post) =>
+      post.id === postId
+        ? {
+            ...post,
+            comments: post.comments?.filter(
+              (comment) => comment.id !== commentId
+            ),
+          }
+        : post
+    );
+
+    setPost(updatedPosts);
+  };
+
   return (
-    <PostContext.Provider value={{ posts, handleAddNewComment }}>
+    <PostContext.Provider
+      value={{ posts, handleAddNewComment, handleDeleteComment }}
+    >
       {children}
     </PostContext.Provider>
   );
