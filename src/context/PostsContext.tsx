@@ -45,7 +45,6 @@ export function PostContextProvidar({ children }: ChildrenProps) {
   const [posts, setPost] = useState<Post[]>(Posts);
 
   // FUNCTION TO ADD NEW COMMENT
-
   const handleAddNewComment = (id: string, comment: string) => {
     const newComment = posts.map((post) =>
       post.id === id
@@ -73,7 +72,7 @@ export function PostContextProvidar({ children }: ChildrenProps) {
     setPost(newComment);
   };
 
-  // FUNCTION TO DELETE A POST
+  // FUNCTION TO DELETE A COMMENT
   const handleDeleteComment = (postId: string, commentId: string) => {
     const updatedPosts = posts.map((post) =>
       post.id === postId

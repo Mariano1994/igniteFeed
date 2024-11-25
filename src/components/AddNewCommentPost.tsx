@@ -26,7 +26,8 @@ const AddNewCommentPost = ({ postID }: PostID) => {
       <button
         type="submit"
         onClick={submitNewComment}
-        className="py-2 px-4 bg-green-850 mt-2 rounded-md hover:brightness-90 hidden group-focus-within:block"
+        disabled={comment.length > 0 ? false : true}
+        className="py-2 px-4 bg-green-850 mt-2 rounded-md hover:brightness-90 hidden group-focus-within:block disabled:cursor-not-allowed"
       >
         {" "}
         Comment
