@@ -20,6 +20,7 @@ interface PostContextProps {
         name: string;
       };
       publishedAt: Date;
+      isOnwer?: boolean;
     }[];
   }[];
   handleAddNewComment: any;
@@ -40,6 +41,18 @@ export const PostContext = createContext<PostContextProps>({
       },
       publisedAt: new Date(),
       content: "",
+      comments: [
+        {
+          id: "",
+          author: {
+            name: "",
+            avatar_url: "",
+          },
+          isOnwer: false,
+          comment: "",
+          publishedAt: new Date(),
+        },
+      ],
     },
   ],
   handleAddNewComment: () => {},
@@ -62,7 +75,9 @@ export function PostContextProvidar({ children }: ChildrenProps) {
                 },
                 publishedAt: new Date(),
                 comment: comment,
+                isOwner: true,
               },
+
               ...post.comments,
             ],
           }

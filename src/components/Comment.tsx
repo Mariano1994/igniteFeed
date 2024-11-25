@@ -12,6 +12,7 @@ interface CommentProps {
       name: string;
     };
     publishedAt: Date;
+    isOwner: boolean;
   };
 }
 
@@ -26,7 +27,9 @@ const Comment = ({ comment }: CommentProps) => {
               <div className="flex flex-col">
                 <span className="text-sm font-bold">
                   {comment.author.name}{" "}
-                  <span className="text-xs text-gray-500">(you)</span>
+                  {comment.isOwner && (
+                    <span className="text-xs text-gray-500">(you)</span>
+                  )}
                 </span>
                 <span className="text-xs text-gray-500">
                   {DateFormatterFns(comment.publishedAt, new Date())}

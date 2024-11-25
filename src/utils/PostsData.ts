@@ -19,6 +19,7 @@ export const Posts = Array.from({ length: 8 }).map(() => {
         },
         publishedAt: faker.date.anytime(),
         comment: faker.word.words({ count: { min: 10, max: 30 } }),
+        isOwner: false,
       };
     }),
   };

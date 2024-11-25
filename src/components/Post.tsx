@@ -22,6 +22,7 @@ interface PostPros {
         name: string;
       };
       publishedAt: Date;
+      isOwner: boolean;
     }[];
   };
 }
