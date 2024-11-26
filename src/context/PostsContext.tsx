@@ -31,6 +31,7 @@ interface PostContextProps {
   handleAddNewComment: (id: string, comment: string) => void;
   handleDeleteComment: (postId: string, commentId: string) => void;
   handlerApplaudComment: (id: string, comment: string) => void;
+  handlerAddNewPost: (postcontent: string) => void;
 }
 
 interface ChildrenProps {
@@ -42,10 +43,30 @@ export const PostContext = createContext<PostContextProps>({
   handleAddNewComment: () => {},
   handleDeleteComment: () => {},
   handlerApplaudComment: () => {},
+  handlerAddNewPost: () => {},
 });
 
 export function PostContextProvidar({ children }: ChildrenProps) {
   const [posts, setPost] = useState<Post[]>(Posts);
+
+  // FUNCTION TO CREATE A NEW POST
+  const handlerAddNewPost = (postcontent: string) => {
+    const newPost = [
+      {
+        id: crypto.randomUUID(),
+        author: {
+          avatar_url: userimage,
+          name: "Mariano Capiliku",
+          role: "Web Developer",
+        },
+        publisedAt: new Date(),
+        content: postcontent,
+        comments: [],
+      },
+      ...posts,
+    ];
+    setPost(newPost);
+  };
 
   // FUNCTION TO ADD NEW COMMENT
   const handleAddNewComment = (id: string, comment: string) => {
@@ -117,6 +138,7 @@ export function PostContextProvidar({ children }: ChildrenProps) {
         handleAddNewComment,
         handleDeleteComment,
         handlerApplaudComment,
+        handlerAddNewPost,
       }}
     >
       {children}

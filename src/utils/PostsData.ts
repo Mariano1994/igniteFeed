@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-export const Posts = Array.from({ length: 4 }).map(() => {
+export const Posts = Array.from({ length: 3 }).map(() => {
   return {
     id: crypto.randomUUID(),
     author: {
