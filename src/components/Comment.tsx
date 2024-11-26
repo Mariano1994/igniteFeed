@@ -3,6 +3,8 @@ import { Dot, HandsClapping, Trash } from "@phosphor-icons/react";
 import Avatar from "./Avatar";
 import { DateFormatterFns } from "../utils/helpers";
 import { usePosts } from "../context/PostsContext";
+import Modal from "./Modal";
+import { useState } from "react";
 
 interface CommentProps {
   comment: {
@@ -20,7 +22,8 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, postId }: CommentProps) => {
-  const { handleDeleteComment, handlerApplaudComment } = usePosts();
+  const [showModal, setShowModal] = useState(false);
+  const { handlerApplaudComment } = usePosts();
 
   return (
     <div className="flex items-start gap-4 w-full">
@@ -47,7 +50,7 @@ const Comment = ({ comment, postId }: CommentProps) => {
             <div
               className="hover:cursor-pointer hover:text-red-400"
               title="Delete comment"
-              onClick={() => handleDeleteComment(postId, comment.id)}
+              onClick={() => setShowModal(!showModal)}
             >
               <Trash size={20} />
             </div>
@@ -63,6 +66,14 @@ const Comment = ({ comment, postId }: CommentProps) => {
           <span className="text-sm -ml-2">{comment.likesCount}</span>
         </div>
       </div>
+
+      {showModal && (
+        <Modal
+          postId={postId}
+          commentId={comment.id}
+          onCancelDeleteComment={setShowModal}
+        />
+      )}
     </div>
   );
 };

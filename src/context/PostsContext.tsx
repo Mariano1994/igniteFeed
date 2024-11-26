@@ -92,6 +92,7 @@ export function PostContextProvidar({ children }: ChildrenProps) {
     setPost(updatedPosts);
   };
 
+  // FUNCTION TO APPLAUD COMMENTS
   const handlerApplaudComment = (postId: string, commentId: string) => {
     const applaudComment = posts.map((post) =>
       post.id === postId
