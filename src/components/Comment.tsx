@@ -5,6 +5,7 @@ import { DateFormatterFns } from "../utils/helpers";
 import { usePosts } from "../context/PostsContext";
 import Modal from "./Modal";
 import { useState } from "react";
+import DeleteCommentModalContent from "./DeleteCommentModalContent";
 
 interface CommentProps {
   comment: {
@@ -68,11 +69,13 @@ const Comment = ({ comment, postId }: CommentProps) => {
       </div>
 
       {showModal && (
-        <Modal
-          postId={postId}
-          commentId={comment.id}
-          onCancelDeleteComment={setShowModal}
-        />
+        <Modal>
+          <DeleteCommentModalContent
+            postId={postId}
+            commentId={comment.id}
+            onCancelDeleteComment={setShowModal}
+          />
+        </Modal>
       )}
     </div>
   );
