@@ -1,6 +1,5 @@
 import coverPhoto from "../assets/cover-profile-photo.avif";
 import profilePhoto from "../assets/avatar-1.jpg";
-import { PencilSimpleLine } from "@phosphor-icons/react";
 import Avatar from "./Avatar";
 import CreateNewPostButton from "./CreateNewPostButton";
 

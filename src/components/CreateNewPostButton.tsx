@@ -22,7 +22,7 @@ const CreateNewPostButton = () => {
 
       {showModal && (
         <Modal>
-          <CreatePostModalContent />
+          <CreatePostModalContent onCancelNewPost={setShowModal} />
         </Modal>
       )}
     </>
