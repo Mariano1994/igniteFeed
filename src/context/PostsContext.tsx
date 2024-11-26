@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 import userimage from "../assets/avatar-1.jpg";
 import { Posts } from "../utils/PostsData";
 
-interface Comment {
+export interface Comment {
   id: string;
   comment: string;
   author: {
@@ -11,6 +11,7 @@ interface Comment {
   };
   publishedAt: Date;
   isOwner?: boolean;
+  likesCount: number;
 }
 
 interface Post {
@@ -29,6 +30,7 @@ interface PostContextProps {
   posts: Post[];
   handleAddNewComment: (id: string, comment: string) => void;
   handleDeleteComment: (postId: string, commentId: string) => void;
+  handlerApplaudComment: (id: string, comment: string) => void;
 }
 
 interface ChildrenProps {
@@ -39,6 +41,7 @@ export const PostContext = createContext<PostContextProps>({
   posts: [],
   handleAddNewComment: () => {},
   handleDeleteComment: () => {},
+  handlerApplaudComment: () => {},
 });
 
 export function PostContextProvidar({ children }: ChildrenProps) {
@@ -61,6 +64,7 @@ export function PostContextProvidar({ children }: ChildrenProps) {
                     publishedAt: new Date(),
                     comment,
                     isOwner: true,
+                    likesCount: 0,
                   },
                   ...post.comments,
                 ]
@@ -88,9 +92,31 @@ export function PostContextProvidar({ children }: ChildrenProps) {
     setPost(updatedPosts);
   };
 
+  const handlerApplaudComment = (postId: string, commentId: string) => {
+    const applaudComment = posts.map((post) =>
+      post.id === postId
+        ? {
+            ...post,
+            comments: post.comments?.map((comment) =>
+              comment.id === commentId
+                ? { ...comment, likesCount: comment.likesCount + 1 }
+                : comment
+            ),
+          }
+        : post
+    );
+
+    setPost(applaudComment);
+  };
+
   return (
     <PostContext.Provider
-      value={{ posts, handleAddNewComment, handleDeleteComment }}
+      value={{
+        posts,
+        handleAddNewComment,
+        handleDeleteComment,
+        handlerApplaudComment,
+      }}
     >
       {children}
     </PostContext.Provider>

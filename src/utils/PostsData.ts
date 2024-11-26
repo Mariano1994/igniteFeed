@@ -20,6 +20,7 @@ export const Posts = Array.from({ length: 4 }).map(() => {
         publishedAt: faker.date.anytime(),
         comment: faker.word.words({ count: { min: 10, max: 30 } }),
         isOwner: false,
+        likesCount: faker.number.int({ min: 1, max: 300 }),
       };
     }),
   };

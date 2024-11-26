@@ -1,4 +1,4 @@
-import { Dot, ThumbsUp, Trash } from "@phosphor-icons/react";
+import { Dot, HandsClapping, Trash } from "@phosphor-icons/react";
 
 import Avatar from "./Avatar";
 import { DateFormatterFns } from "../utils/helpers";
@@ -14,12 +14,13 @@ interface CommentProps {
     };
     publishedAt: Date;
     isOwner: boolean;
+    likesCount?: number;
   };
   postId: string;
 }
 
 const Comment = ({ comment, postId }: CommentProps) => {
-  const { handleDeleteComment } = usePosts();
+  const { handleDeleteComment, handlerApplaudComment } = usePosts();
 
   return (
     <div className="flex items-start gap-4 w-full">
@@ -52,11 +53,14 @@ const Comment = ({ comment, postId }: CommentProps) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-gray-500 tex-xs hover:cursor-pointer hover:text-green-850">
-          <ThumbsUp size={16} />
-          <span className="text-sm -mr-2">like</span>
+        <div
+          onClick={() => handlerApplaudComment(postId, comment.id)}
+          className="flex items-center gap-1 text-gray-500 tex-xs hover:cursor-pointer hover:text-yellow-400/75"
+        >
+          <HandsClapping size={16} />
+          <span className="text-sm -mr-2">Applaud</span>
           <Dot size={25} weight="bold" />
-          <span className="text-sm -ml-2">33</span>
+          <span className="text-sm -ml-2">{comment.likesCount}</span>
         </div>
       </div>
     </div>
