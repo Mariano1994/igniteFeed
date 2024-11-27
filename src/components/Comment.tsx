@@ -48,13 +48,15 @@ const Comment = ({ comment, postId }: CommentProps) => {
                 <p className="text-sm w-full">{comment.comment}</p>
               </div>
             </div>
-            <div
-              className="hover:cursor-pointer hover:text-red-400"
-              title="Delete comment"
-              onClick={() => setShowModal(!showModal)}
-            >
-              <Trash size={20} />
-            </div>
+            {comment.isOwner && (
+              <div
+                className="hover:cursor-pointer hover:text-red-400"
+                title="Delete comment"
+                onClick={() => setShowModal(!showModal)}
+              >
+                <Trash size={20} />
+              </div>
+            )}
           </div>
         </div>
         <div
@@ -68,7 +70,7 @@ const Comment = ({ comment, postId }: CommentProps) => {
         </div>
       </div>
 
-      {showModal && (
+      {showModal && comment.isOwner && (
         <Modal>
           <DeleteCommentModalContent
             postId={postId}
