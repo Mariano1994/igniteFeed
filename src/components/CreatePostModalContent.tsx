@@ -1,12 +1,14 @@
 import { Check } from "@phosphor-icons/react";
 import { usePosts } from "../context/PostsContext";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const CreatePostModalContent = ({ onCancelNewPost }: any) => {
   const [postContent, setPostContent] = useState("");
   const { handlerAddNewPost } = usePosts();
 
   const AddNewPost = () => {
+    toast.success("post created");
     handlerAddNewPost(postContent);
     onCancelNewPost(false);
     setPostContent("");

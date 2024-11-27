@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { usePosts } from "../context/PostsContext";
 
 interface ModalProps {
@@ -14,6 +15,7 @@ const DeleteCommentModalContent = ({
   const { handleDeleteComment } = usePosts();
 
   const handleConfirmCommentDelete = () => {
+    toast.error("comment deleted");
     handleDeleteComment(postId, commentId);
     onCancelDeleteComment(false);
   };
