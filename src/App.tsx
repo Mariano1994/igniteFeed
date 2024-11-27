@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className=" antialiased font-app">
-        <Toaster richColors />
+        <Toaster richColors closeButton />
         <Header />
         <MainContentWrapper />
       </div>

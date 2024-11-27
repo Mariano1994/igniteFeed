@@ -6,6 +6,7 @@ import { usePosts } from "../context/PostsContext";
 import Modal from "./Modal";
 import { useState } from "react";
 import DeleteCommentModalContent from "./DeleteCommentModalContent";
+import { toast } from "sonner";
 
 interface CommentProps {
   comment: {
@@ -25,6 +26,16 @@ interface CommentProps {
 const Comment = ({ comment, postId }: CommentProps) => {
   const [showModal, setShowModal] = useState(false);
   const { handlerApplaudComment } = usePosts();
+
+  const handlerShowDeleteModalConfirmation = () => {
+    if (comment.isOwner) {
+      setShowModal(!showModal);
+    } else {
+      toast.error("Not-allowed", {
+        description: "you can not delete someone's comment",
+      });
+    }
+  };
 
   return (
     <div className="flex items-start gap-4 w-full">
@@ -48,15 +59,18 @@ const Comment = ({ comment, postId }: CommentProps) => {
                 <p className="text-sm w-full">{comment.comment}</p>
               </div>
             </div>
-            {comment.isOwner && (
-              <div
-                className="hover:cursor-pointer hover:text-red-400"
-                title="Delete comment"
-                onClick={() => setShowModal(!showModal)}
-              >
-                <Trash size={20} />
-              </div>
-            )}
+
+            <div
+              className={`${
+                comment.isOwner
+                  ? "hover:cursor-pointer hover:text-red-400"
+                  : " opacity-35 hover:cursor-not-allowed"
+              }`}
+              title="Delete comment"
+              onClick={handlerShowDeleteModalConfirmation}
+            >
+              <Trash size={20} />
+            </div>
           </div>
         </div>
         <div
@@ -70,7 +84,7 @@ const Comment = ({ comment, postId }: CommentProps) => {
         </div>
       </div>
 
-      {showModal && comment.isOwner && (
+      {showModal && (
         <Modal>
           <DeleteCommentModalContent
             postId={postId}
